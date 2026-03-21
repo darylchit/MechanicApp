@@ -1,0 +1,85 @@
+### Variables
+@baseUrl = https://localhost:7059
+@contentType = application/json
+
+### STEP 1: Register a user first (REQUIRED before creating clients!)
+POST {{baseUrl}}/api/Auth/register
+Content-Type: {{contentType}}
+
+{
+  "email": "malia@camandang.com",
+  "password": "Test123!",
+  "firstName": "Malia",
+  "lastName": "Camandang",
+  "phoneNumber": "222-2222"
+}
+
+###
+
+### Get all users (copy the userId for next step)
+GET {{baseUrl}}/api/Auth/users
+
+###
+
+### STEP 2: Create a client using the userId from above
+POST {{baseUrl}}/api/Clients
+Content-Type: {{contentType}}
+
+{
+  "userId": "638b9373-98bd-494b-b942-ebc3ce76fe92",
+  "address": "Monsters Inc, Long Beach, California"
+}
+
+###
+
+### Get all clients (NOW you'll see data!)
+GET {{baseUrl}}/api/Clients
+
+###
+
+### Get client by ID
+GET {{baseUrl}}/api/Clients/3
+
+###
+
+### Get client by User ID
+GET {{baseUrl}}/api/Clients/user/c77c4d34-7c0c-42cc-9c1d-03ed2a99b07f
+
+###
+
+### Create a new client
+POST {{baseUrl}}/api/Clients
+Content-Type: {{contentType}}
+
+{
+  "userId": "test-user-id",
+  "address": "123 Main Street, City, State"
+}
+
+###
+
+### Update a client
+PUT {{baseUrl}}/api/Clients/3
+Content-Type: {{contentType}}
+
+{
+  "userId": "c77c4d34-7c0c-42cc-9c1d-03ed2a99b07f",
+  "address": "456 Oak Avenue, City, State"
+}
+
+###
+
+### Delete a client
+DELETE {{baseUrl}}/api/Clients/1
+
+###
+
+### Get client's vehicles
+GET {{baseUrl}}/api/Clients/2/vehicles
+
+###
+
+### Get client's service requests
+GET {{baseUrl}}/api/Clients/1/servicerequests
+
+###

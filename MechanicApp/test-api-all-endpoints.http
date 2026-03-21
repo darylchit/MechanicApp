@@ -1,0 +1,304 @@
+### Variables
+@baseUrl = https://localhost:7059
+@contentType = application/json
+
+########## AUTH & USER MANAGEMENT ##########
+
+### Register a user
+POST {{baseUrl}}/api/Auth/register
+Content-Type: {{contentType}}
+
+{
+  "email": "john.doe@example.com",
+  "password": "Test123!",
+  "firstName": "John",
+  "lastName": "Doe",
+  "phoneNumber": "555-1234"
+}
+
+###
+
+### Get all users
+GET {{baseUrl}}/api/Auth/users
+
+###
+
+########## CLIENTS ##########
+
+### Get all clients
+GET {{baseUrl}}/api/Clients
+
+###
+
+### Get client by ID
+GET {{baseUrl}}/api/Clients/1
+
+###
+
+### Get client by User ID
+GET {{baseUrl}}/api/Clients/user/{userId}
+
+###
+
+### Get client's vehicles
+GET {{baseUrl}}/api/Clients/1/vehicles
+
+###
+
+### Get client's service requests
+GET {{baseUrl}}/api/Clients/1/servicerequests
+
+###
+
+########## MECHANICS ##########
+
+### Get all mechanics
+GET {{baseUrl}}/api/Mechanics
+
+###
+
+### Get mechanic by ID
+GET {{baseUrl}}/api/Mechanics/1
+
+###
+
+### Get mechanic by User ID
+GET {{baseUrl}}/api/Mechanics/user/{userId}
+
+###
+
+### Get mechanics by shop
+GET {{baseUrl}}/api/Mechanics/shop/1
+
+###
+
+### Get available mechanics
+GET {{baseUrl}}/api/Mechanics/available
+
+###
+
+### Get mechanic's service requests
+GET {{baseUrl}}/api/Mechanics/1/servicerequests
+
+###
+
+### Create a new mechanic (use userId from register user above)
+POST {{baseUrl}}/api/Mechanics
+Content-Type: {{contentType}}
+
+{
+  "userId": "paste-user-id-here",
+  "shopId": 1,
+  "specialization": "Engine Repair",
+  "isAvailable": true
+}
+
+###
+
+### Update a mechanic
+PUT {{baseUrl}}/api/Mechanics/1
+Content-Type: {{contentType}}
+
+{
+  "userId": "paste-user-id-here",
+  "shopId": 1,
+  "specialization": "Brake Systems",
+  "isAvailable": false
+}
+
+###
+
+### Delete a mechanic
+DELETE {{baseUrl}}/api/Mechanics/1
+
+###
+
+########## SHOPS ##########
+
+### Get all shops
+GET {{baseUrl}}/api/Shops
+
+###
+
+### Get shop by ID
+GET {{baseUrl}}/api/Shops/1
+
+###
+
+### Get shop's mechanics
+GET {{baseUrl}}/api/Shops/1/mechanics
+
+###
+
+### Create a new shop
+POST {{baseUrl}}/api/Shops
+Content-Type: {{contentType}}
+
+{
+  "name": "AutoCare Center",
+  "address": "789 Main Street, City, State 12345",
+  "phoneNumber": "555-9876",
+  "email": "info@autocarecentre.com"
+}
+
+###
+
+### Update a shop
+PUT {{baseUrl}}/api/Shops/1
+Content-Type: {{contentType}}
+
+{
+  "name": "AutoCare Center Plus",
+  "address": "789 Main Street, Suite 100, City, State 12345",
+  "phoneNumber": "555-9877",
+  "email": "contact@autocarecenterplus.com"
+}
+
+###
+
+### Delete a shop
+DELETE {{baseUrl}}/api/Shops/1
+
+###
+
+########## VEHICLES ##########
+
+### Get all vehicles
+GET {{baseUrl}}/api/Vehicles
+
+###
+
+### Get vehicle by ID
+GET {{baseUrl}}/api/Vehicles/1
+
+###
+
+### Get vehicles by client
+GET {{baseUrl}}/api/Vehicles/client/1
+
+###
+
+### Get vehicle's service requests
+GET {{baseUrl}}/api/Vehicles/1/servicerequests
+
+###
+
+### Register a new vehicle (use clientId from GET /api/Clients)
+POST {{baseUrl}}/api/Vehicles
+Content-Type: {{contentType}}
+
+{
+  "clientId": 1,
+  "make": "Toyota",
+  "model": "Camry",
+  "year": 2024,
+  "licensePlate": "ABC-1234",
+  "vin": "1HGBH41JXMN109186",
+  "color": "Blue",
+  "mileage": 15000
+}
+
+###
+
+### Update a vehicle
+PUT {{baseUrl}}/api/Vehicles/1
+Content-Type: {{contentType}}
+
+{
+  "clientId": 1,
+  "make": "Toyota",
+  "model": "Camry",
+  "year": 2024,
+  "licensePlate": "ABC-1234",
+  "vin": "1HGBH41JXMN109186",
+  "color": "Red",
+  "mileage": 20000
+}
+
+###
+
+### Delete a vehicle
+DELETE {{baseUrl}}/api/Vehicles/1
+
+###
+
+########## SERVICE REQUESTS ##########
+
+### Get all service requests
+GET {{baseUrl}}/api/ServiceRequests
+
+###
+
+### Get service request by ID
+GET {{baseUrl}}/api/ServiceRequests/1
+
+###
+
+### Get service requests by status (Pending, InProgress, Completed, Cancelled)
+GET {{baseUrl}}/api/ServiceRequests/status/Pending
+
+###
+
+### Get service requests by client
+GET {{baseUrl}}/api/ServiceRequests/client/1
+
+###
+
+### Get service requests by mechanic
+GET {{baseUrl}}/api/ServiceRequests/mechanic/1
+
+###
+
+### Get service requests by vehicle
+GET {{baseUrl}}/api/ServiceRequests/vehicle/1
+
+###
+
+########## CONVERSATIONS ##########
+
+### Get all conversations
+GET {{baseUrl}}/api/Conversations
+
+###
+
+### Get conversation by ID
+GET {{baseUrl}}/api/Conversations/1
+
+###
+
+### Get conversations by client
+GET {{baseUrl}}/api/Conversations/client/1
+
+###
+
+### Get conversations by mechanic
+GET {{baseUrl}}/api/Conversations/mechanic/1
+
+###
+
+### Get conversation messages
+GET {{baseUrl}}/api/Conversations/1/messages
+
+###
+
+########## MESSAGES ##########
+
+### Get all messages
+GET {{baseUrl}}/api/Messages
+
+###
+
+### Get message by ID
+GET {{baseUrl}}/api/Messages/1
+
+###
+
+### Get messages by conversation
+GET {{baseUrl}}/api/Messages/conversation/1
+
+###
+
+### Get unread messages by user
+GET {{baseUrl}}/api/Messages/unread/user/{userId}
+
+###
